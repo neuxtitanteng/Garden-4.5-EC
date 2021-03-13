@@ -20,8 +20,8 @@ create table member(
 	email nvarchar(200) ,
 	phone nvarchar(50) ,
 	mobile nvarchar(50) ,
-    city_id int ,
-    zipcode int,
+    city_id nvarchar(50) ,
+    zipcode nvarchar(50),
     address nvarchar(500),
 
 	is_open nvarchar(1) not null,

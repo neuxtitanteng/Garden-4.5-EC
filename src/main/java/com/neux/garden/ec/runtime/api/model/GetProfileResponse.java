@@ -1,6 +1,6 @@
 
 /*
- * <p> Source File Name: GenerationResponse.java </p>
+ * <p> Source File Name: GetProductResponse.java </p>
  * <p> Modify Date: Sat Mar 13 17:05:24 CST 2021 </p>
  */
 
@@ -10,20 +10,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Date;
-import java.math.BigDecimal;
+import javax.validation.constraints.NotNull;
 
 @Validated
-public class GenerationResponse implements APIModel{
+public class GetProfileResponse implements APIModel{
 
     
     @JsonProperty("Header")
     @Valid @NotNull
     private ResponseHeader header = null;
+            
+    @JsonProperty("Body")
+    @Valid @NotNull
+    private Profile body = null;
             
     public void setHeader(ResponseHeader header) {
         this.header = header;
@@ -31,6 +30,14 @@ public class GenerationResponse implements APIModel{
 
     public ResponseHeader getHeader() {
         return header;
+    }
+            
+    public void setBody(Profile body) {
+        this.body = body;
+    }
+
+    public Profile getBody() {
+        return body;
     }
             
 

@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="member")
-public class Member {
+public class Member extends BasicCreateUpdateInfo {
   
     @Id
     @Column(name = "account")
@@ -37,10 +37,10 @@ public class Member {
     private String mobile = null;
           
     @Column(name = "city_id")
-    private Integer cityId = null;
+    private String cityId = null;
           
     @Column(name = "zipcode")
-    private Integer zipcode = null;
+    private String zipcode = null;
           
     @Column(name = "address")
     private String address = null;
@@ -48,20 +48,10 @@ public class Member {
     @Column(name = "is_open")
     private String isOpen = null;
           
-    @Column(name = "create_by")
-    private String createBy = null;
-          
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_time")
-    private Date createTime = null;
-          
-    @Column(name = "update_by")
-    private String updateBy = null;
-          
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "update_time")
-    private Date updateTime = null;
-          
+
+
+
+
     public void setAccount(String account) {
         this.account = account;
     }
@@ -118,19 +108,19 @@ public class Member {
         return mobile;
     }
             
-    public void setCityId(Integer cityId) {
+    public void setCityId(String cityId) {
         this.cityId = cityId;
     }
 
-    public Integer getCityId() {
+    public String getCityId() {
         return cityId;
     }
             
-    public void setZipcode(Integer zipcode) {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
 
-    public Integer getZipcode() {
+    public String getZipcode() {
         return zipcode;
     }
             
@@ -149,38 +139,7 @@ public class Member {
     public String getIsOpen() {
         return isOpen;
     }
-            
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
 
-    public String getCreateBy() {
-        return createBy;
-    }
-            
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-            
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public String getUpdateBy() {
-        return updateBy;
-    }
-            
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-            
 
 }

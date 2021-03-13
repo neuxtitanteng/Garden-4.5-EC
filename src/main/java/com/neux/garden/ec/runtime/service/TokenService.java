@@ -38,22 +38,6 @@ public class TokenService {
     @Autowired
     private DateService dateService = new DateService();
 
-    public static void main(String[] args) throws Exception{
-
-    	
-    	Map<String, Object> claims = new HashMap<>();
-		claims.put("AgentID", "aaa");
-		claims.put("VerifiedKey", "");
-
-	
-
-        TokenService tokenService = new TokenService();
-        String token = tokenService.generateToken(claims);
-
-        System.out.println(token);
-        System.out.println(tokenService.getAgentIdFromToken(token));
-    }
-
     private Claims parseToken(String token) {
 
         try{
@@ -77,11 +61,7 @@ public class TokenService {
     }
 
     public String getUsernameFromToken(String token) {
-        return getValueFromToken(token,"AgentName");
-    }
-
-    public String getAgentIdFromToken(String token) {
-        return getValueFromToken(token,"AgentID");
+        return getValueFromToken(token,"Username");
     }
 
     public String getValueFromToken(String token,String name) {
