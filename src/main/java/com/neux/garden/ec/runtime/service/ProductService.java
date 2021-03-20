@@ -81,6 +81,20 @@ public class ProductService<T> {
 
         ExProduct exProduct = exProductService.findByProductId(productId);
 
+        //add View Product Log
+        ExProductLog exProductLog = exProductLogService.findByID(productId);
+        if(exProductLog == null) {
+            exProductLog = new ExProductLog();
+            exProductLog.setProductId(productId);
+            exProductLog.setViewCount(1);
+        }
+        else {
+            exProductLog.setViewCount(exProductLog.getViewCount() == null ? 1 : (exProductLog.getViewCount() + 1));
+        }
+
+        exProductLogService.save(exProductLog);
+
+
         response.setBody(convertAPIProduct(exProduct));
 
         return response;
