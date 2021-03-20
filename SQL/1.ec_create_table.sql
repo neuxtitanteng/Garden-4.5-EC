@@ -51,7 +51,7 @@ create table ex_product_category(
 	category_id nvarchar(50) not null,
 	category_name nvarchar(100) not null,
 	description nvarchar(500),
-	parent_id nvarchar(50) not null,
+	parent_id nvarchar(50) ,
     is_open nvarchar(1) not null,
 
 	create_by nvarchar(100),
@@ -79,7 +79,7 @@ create table ex_product(
 	product_id nvarchar(50) not null,
 	product_name nvarchar(200) not null,
 	picture int not null,
-	stock_status nvarchar(1) not null, --NORMAL / OUT_OF_STOCK--
+	stock_status nvarchar(50) not null, --NORMAL / OUT_OF_STOCK--
     stock int not null,
     stock_limit_percent int ,
     description nvarchar(200) not null,
@@ -94,6 +94,19 @@ create table ex_product(
     update_time datetime,
 
 	primary key(product_id)
+);
+
+create table ex_product_log(
+    product_id nvarchar(50) not null,
+    view_count int ,
+    order_count int ,
+    primary key(product_id)
+);
+
+create table ex_product_category_mapping(
+    product_id nvarchar(50) not null,
+    category_id nvarchar(50) not null,
+    primary key(product_id,category_id)
 );
 
 create table ex_product_point_category(

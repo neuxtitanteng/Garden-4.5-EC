@@ -10,10 +10,12 @@ import com.neux.garden.ec.runtime.jpa.model.ExProduct;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.util.List;
 
-public interface ExProductRepository extends JpaRepository<ExProduct, String> {
-
+public interface ExProductRepository extends JpaRepository<ExProduct, String> , JpaSpecificationExecutor {
+    @Query("select a from ExProduct a where startTime <= GETDATE() and endTime >= GETDATE() and productId = :productId")
+    public ExProduct findByProductId(@Param("productId") String productId);
 }

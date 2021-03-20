@@ -16,4 +16,5 @@ import java.util.List;
 
 public interface ExProductCategoryRepository extends JpaRepository<ExProductCategory, String> {
 
+
 }

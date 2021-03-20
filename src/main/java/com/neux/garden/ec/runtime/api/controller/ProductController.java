@@ -7,6 +7,7 @@
 package com.neux.garden.ec.runtime.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.neux.garden.ec.runtime.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,8 @@ public class ProductController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private ProductService productService;
     
     @RequestMapping(value = "/Product",
         produces = { "application/json" },
@@ -49,12 +52,13 @@ public class ProductController {
         @Valid  @RequestParam(value="keyword", required=false) String keyword,
         @Valid  @RequestParam(value="productId", required=false) String productId,
         @Valid  @RequestParam(value="minPoint", required=false) String minPoint,
-        @Valid  @RequestParam(value="maxPoint", required=false) String maxPoint){
+        @Valid  @RequestParam(value="maxPoint", required=false) String maxPoint,
+        @Valid  @RequestParam(value="pageNo", required=true) String pageNo){
 
         String accept = request.getHeader("Content-Type");
         if (accept != null && accept.contains("application/json")) {
             try{
-                return objectMapper.readValue("{\"Header\":{},\"Body\":{}}",ListProductResponse.class);
+                return productService.listProduct(categoryId,keyword,productId,minPoint,maxPoint,pageNo);
             }
             catch(APIException e) {
                 logger.error("listProduct APIException !!",e);
@@ -70,18 +74,15 @@ public class ProductController {
     
     @RequestMapping(value = "/Product/{productId}",
         produces = { "application/json" },
-        
         method = RequestMethod.GET)
     @ResponseBody
     @Validated
     public GetProductResponse getProduct(
-        
-        @Valid  @RequestParam(value="productId", required=true) String productId){
-
+        @Valid  @PathVariable(value="productId", required=true) String productId){
         String accept = request.getHeader("Content-Type");
         if (accept != null && accept.contains("application/json")) {
             try{
-                return objectMapper.readValue("{\"Header\":{},\"Body\":{}}",GetProductResponse.class);
+                return productService.getProduct(productId);
             }
             catch(APIException e) {
                 logger.error("getProduct APIException !!",e);

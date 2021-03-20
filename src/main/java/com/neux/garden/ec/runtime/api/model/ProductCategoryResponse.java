@@ -18,7 +18,7 @@ import java.util.Date;
 import java.math.BigDecimal;
 
 @Validated
-public class ProductCategoryResponse {
+public class ProductCategoryResponse implements APIModel {
 
     
     @JsonProperty("Header")

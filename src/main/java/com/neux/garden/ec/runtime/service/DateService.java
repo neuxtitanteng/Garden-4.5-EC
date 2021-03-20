@@ -233,6 +233,37 @@ public class DateService {
         return sdf.format(date);
     }
 
+    public Date getTodayStartTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        sdf.setLenient(false);
+
+        String dateTime = sdf.format(getTodayDate()).substring(0,8) + "000000";
+        Date date = null;
+        try{
+            date = sdf.parse(dateTime);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return date;
+    }
+
+    public Date getTodayEndTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        sdf.setLenient(false);
+
+        String dateTime = sdf.format(getTodayDate()).substring(0,8) + "235959";
+
+        Date date = null;
+        try{
+            date = sdf.parse(dateTime);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return date;
+    }
+
     public String toDateString(Date date, String format) {
         if(date == null) return null;
         SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -333,10 +364,12 @@ public class DateService {
         DateService dateService = new DateService();
 
 
-        System.out.println(dateService.getDateFormatCISL("2020-03-12T09:55:01.704"));
-        System.out.println(dateService.getDateFormatCISL("2020-03-12T00:00","yyyy-MM-dd'T'HH:mm"));
+//        System.out.println(dateService.getDateFormatCISL("2020-03-12T09:55:01.704"));
+//        System.out.println(dateService.getDateFormatCISL("2020-03-12T00:00","yyyy-MM-dd'T'HH:mm"));
 
 
+        System.out.println(dateService.getTodayStartTime());
+        System.out.println(dateService.getTodayEndTime());
 
 //        Date end = dateService.getDate("2020/12/25");
 //        System.out.println(dateService.getBetweenTime(start,end,DateType.DAY));

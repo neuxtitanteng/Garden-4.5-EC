@@ -31,9 +31,12 @@ public class ExProduct {
           
     @Column(name = "stock_limit_percent")
     private Integer stockLimitPercent = null;
-          
+
     @Column(name = "description")
-    private Integer description = null;
+    private String description = null;
+
+    @Column(name = "introduction")
+    private Integer introduction = null;
           
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_time")
@@ -104,15 +107,23 @@ public class ExProduct {
     public Integer getStockLimitPercent() {
         return stockLimitPercent;
     }
-            
-    public void setDescription(Integer description) {
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public Integer getDescription() {
-        return description;
+    public Integer getIntroduction() {
+        return introduction;
     }
-            
+
+    public void setIntroduction(Integer introduction) {
+        this.introduction = introduction;
+    }
+
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }

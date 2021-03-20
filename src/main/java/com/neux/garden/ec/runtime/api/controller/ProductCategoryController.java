@@ -7,17 +7,14 @@
 package com.neux.garden.ec.runtime.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.neux.garden.ec.runtime.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 
 import com.neux.garden.ec.runtime.api.exception.APIException;
@@ -36,6 +33,8 @@ public class ProductCategoryController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private ProductService productService;
     
     @RequestMapping(value = "/ProductCategory",
         produces = { "application/json" },
@@ -49,7 +48,7 @@ public class ProductCategoryController {
         String accept = request.getHeader("Content-Type");
         if (accept != null && accept.contains("application/json")) {
             try{
-                return objectMapper.readValue("{\"Header\":{},\"Body\":{}}",ProductCategoryResponse.class);
+                return productService.listProductCategory();
             }
             catch(APIException e) {
                 logger.error("listProductCategory APIException !!",e);
