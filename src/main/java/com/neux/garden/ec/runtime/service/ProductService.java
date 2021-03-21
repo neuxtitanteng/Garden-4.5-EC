@@ -100,7 +100,7 @@ public class ProductService<T> {
         return response;
     }
 
-    private Product convertAPIProduct(ExProduct exProduct) {
+    public Product convertAPIProduct(ExProduct exProduct) {
 
         String productId = exProduct.getProductId();
 

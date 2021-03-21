@@ -18,7 +18,7 @@ import java.util.Date;
 import java.math.BigDecimal;
 
 @Validated
-public class ListShoppingCarResponse {
+public class ListShoppingCarResponse implements APIModel{
 
     
     @JsonProperty("Header")
@@ -27,7 +27,7 @@ public class ListShoppingCarResponse {
             
     @JsonProperty("Body")
     @Valid 
-    private String body = null;
+    private ArrayList<Product> body = new ArrayList<>();
             
     public void setHeader(ResponseHeader header) {
         this.header = header;
@@ -36,14 +36,16 @@ public class ListShoppingCarResponse {
     public ResponseHeader getHeader() {
         return header;
     }
-            
-    public void setBody(String body) {
-        this.body = body;
+
+    public void addProduct(Product product) {
+        body.add(product);
     }
 
-    public String getBody() {
+    public ArrayList<Product> getBody() {
         return body;
     }
-            
 
+    public void setBody(ArrayList<Product> body) {
+        this.body = body;
+    }
 }

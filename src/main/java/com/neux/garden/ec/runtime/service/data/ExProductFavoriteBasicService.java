@@ -7,8 +7,9 @@
 package com.neux.garden.ec.runtime.service.data;
 
 import com.neux.garden.ec.runtime.jpa.model.ExProductFavorite;
-    
 
+
+import com.neux.garden.ec.runtime.jpa.model.ExProductFavoriteIdentity;
 import com.neux.garden.ec.runtime.jpa.repository.ExProductFavoriteRepository;
 
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class ExProductFavoriteBasicService {
     @Autowired
     protected ExProductFavoriteRepository basicExProductFavorite;
 
-    public ExProductFavorite findByID(String id) {
+    public ExProductFavorite findByID(ExProductFavoriteIdentity id) {
         return this.basicExProductFavorite.findById(id).orElse(null);
     }
 
@@ -40,7 +41,7 @@ public class ExProductFavoriteBasicService {
         return this.basicExProductFavorite.save(exProductFavorite);
     }
 
-    public void deleteByID(String id) {
+    public void deleteByID(ExProductFavoriteIdentity id) {
         this.basicExProductFavorite.deleteById(id);
     }
 

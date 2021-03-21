@@ -7,8 +7,9 @@
 package com.neux.garden.ec.runtime.service.data;
 
 import com.neux.garden.ec.runtime.jpa.model.ExProductShoppingCar;
-    
 
+
+import com.neux.garden.ec.runtime.jpa.model.ExProductShoppingCarIdentity;
 import com.neux.garden.ec.runtime.jpa.repository.ExProductShoppingCarRepository;
 
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class ExProductShoppingCarBasicService {
     @Autowired
     protected ExProductShoppingCarRepository basicExProductShoppingCar;
 
-    public ExProductShoppingCar findByID(String id) {
+    public ExProductShoppingCar findByID(ExProductShoppingCarIdentity id) {
         return this.basicExProductShoppingCar.findById(id).orElse(null);
     }
 
@@ -40,7 +41,7 @@ public class ExProductShoppingCarBasicService {
         return this.basicExProductShoppingCar.save(exProductShoppingCar);
     }
 
-    public void deleteByID(String id) {
+    public void deleteByID(ExProductShoppingCarIdentity id) {
         this.basicExProductShoppingCar.deleteById(id);
     }
 
