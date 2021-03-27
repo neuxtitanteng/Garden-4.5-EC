@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ import java.util.List;
 @Service
 public class ProductService<T> {
     private Logger logger = LoggerFactory.getLogger(ProductService.class);
+
+    @Value("${Gallery.URL}")
+    private String galleryURL;
 
     @Autowired
     private ExProductCategoryService exProductCategoryService;
@@ -111,10 +115,10 @@ public class ProductService<T> {
         product.setProductId(productId);
         product.setProductName(exProduct.getProductName());
         product.setDescription(exProduct.getDescription());
-        product.setIntroduction(exProduct.getIntroduction().toString()); //TODO
-        product.setPicture(""); //TODO
+//        product.setIntroduction(exProduct.getIntroduction().toString()); //TODO
+        product.setPicture(galleryURL + exProduct.getPicture().getFileName());
         product.setStatus(exProduct.getStockStatus());
-        product.setStock(new BigDecimal(exProduct.getStock()));
+        product.setStock(new BigDecimal(exProduct.getStockCurrent()));
         product.setViewCount(new BigDecimal(exProductLog == null ? 0 : (exProductLog.getViewCount() == null ? 0 : exProductLog.getViewCount())));
         product.setOrderCount(new BigDecimal(exProductLog == null ? 0 : (exProductLog.getOrderCount() == null ? 0 : exProductLog.getOrderCount())));
 

@@ -47,9 +47,9 @@ public class Member extends BasicCreateUpdateInfo {
           
     @Column(name = "is_open")
     private String isOpen = null;
-          
 
-
+    @Column(name = "point")
+    private Integer point = null;
 
 
     public void setAccount(String account) {
@@ -140,6 +140,11 @@ public class Member extends BasicCreateUpdateInfo {
         return isOpen;
     }
 
+    public Integer getPoint() {
+        return point;
+    }
 
-
+    public void setPoint(Integer point) {
+        this.point = point;
+    }
 }

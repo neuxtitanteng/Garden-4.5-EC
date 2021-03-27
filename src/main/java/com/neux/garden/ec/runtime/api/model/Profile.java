@@ -26,7 +26,7 @@ public class Profile {
     private String password = null;
             
     @JsonProperty("Name")
-    @Valid @NotNull
+    @Valid
     private String name = null;
             
     @JsonProperty("Birthday")
@@ -34,7 +34,7 @@ public class Profile {
     private String birthday = null;
             
     @JsonProperty("Email")
-    @Valid @NotNull
+    @Valid
     private String email = null;
             
     @JsonProperty("Mobile")
@@ -44,10 +44,15 @@ public class Profile {
     @JsonProperty("Phone")
     @Valid 
     private String phone = null;
-            
+
     @JsonProperty("Address")
-    @Valid 
+    @Valid
     private AddressInfo address = null;
+
+    @JsonProperty("Point")
+    @Valid @NotNull
+    private Integer point = null;
+
             
     public void setPassword(String password) {
         this.password = password;
@@ -104,6 +109,12 @@ public class Profile {
     public AddressInfo getAddress() {
         return address;
     }
-            
 
+    public Integer getPoint() {
+        return point;
+    }
+
+    public void setPoint(Integer point) {
+        this.point = point;
+    }
 }

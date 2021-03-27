@@ -8,6 +8,7 @@ import com.neux.garden.ec.runtime.exception.RegisterException;
 import com.neux.garden.ec.runtime.jpa.model.Member;
 import com.neux.garden.ec.runtime.service.bean.MailInfo;
 import com.neux.garden.ec.runtime.service.data.MemberService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +56,14 @@ public class AccountService {
     public GenerationResponse register(RegisterRequest registerRequest) {
         GenerationResponse generationResponse = new GenerationResponse();
 
+
+        saveInitMember(registerRequest);
+
+        return generationResponse;
+    }
+
+    private Member saveInitMember(RegisterRequest registerRequest) {
+
         String account = registerRequest.getUsername();
         String password = registerRequest.getPassword();
         String name = registerRequest.getName();
@@ -66,17 +75,24 @@ public class AccountService {
         member = new Member();
         member.setIsOpen("Y");
         member.setAccount(account);
-        member.setPassword(password);
-        member.setName(name);
-        member.setBirthday(dateService.getDate(birthday));
-        member.setEmail(account);
+        member.setPassword(StringUtils.isNotEmpty(password) ? password : "12345");
+        member.setName(StringUtils.isNotEmpty(name) ? name : "");
+        member.setBirthday(birthday != null ? dateService.getDate(birthday) : null);
+        member.setPoint(0);
         memberService.save(member);
 
-        return generationResponse;
+        return member;
     }
 
     public GetProfileResponse getProfile(String authorization) {
         String account = tokenService.getUsernameFromToken(authorization);
+
+        return getProfileByUsername(account);
+
+    }
+
+    public GetProfileResponse getProfileByUsername(String account) {
+
 
         Member member = memberService.findByID(account);
         if(member == null) throw new ProfileException(ErrorCode.NOT_FOUND_MEMBER);
@@ -97,6 +113,7 @@ public class AccountService {
         profile.setMobile(member.getMobile());
         profile.setEmail(member.getEmail());
         profile.setAddress(addressInfo);
+        profile.setPoint(member.getPoint());
 
         profileResponse.setBody(profile);
 
@@ -140,6 +157,24 @@ public class AccountService {
         mailInfo.setBody("您的密碼為：" + member.getPassword());
 
         mailService.sendMail(mailInfo);
+
+        return new GenerationResponse();
+    }
+
+    public GenerationResponse addPoint(AddPointRequest pointInfo) {
+        String account = pointInfo.getUsername();
+        int point = pointInfo.getPoint();
+
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername(account);
+
+        Member member = memberService.findByID(account);
+        if(member == null) member = saveInitMember(registerRequest);
+
+        Integer originalPoint = member.getPoint();
+        member.setPoint(originalPoint + point);
+
+        memberService.save(member);
 
         return new GenerationResponse();
     }

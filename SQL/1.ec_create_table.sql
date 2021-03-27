@@ -25,6 +25,7 @@ create table member(
     address nvarchar(500),
 
 	is_open nvarchar(1) not null,
+    point int not null,
 
 	create_by nvarchar(100),
     create_time datetime,
@@ -32,6 +33,14 @@ create table member(
     update_time datetime,
 
 	primary key(account)
+);
+
+create table member_point_log(
+    log_id int not null,
+    account nvarchar(200) not null,
+    point int not null,
+    log_time datetime not null,
+    primary key(log_id)
 );
 
 create table member_type_mapping(
@@ -81,9 +90,10 @@ create table ex_product(
 	picture int not null,
 	stock_status nvarchar(50) not null, --NORMAL / OUT_OF_STOCK--
     stock int not null,
+    stock_current int not null,
     stock_limit_percent int ,
     description nvarchar(200) not null,
-    introduction int not null,
+    introduction int ,
 
     start_time datetime not null,
     end_time datetime not null,

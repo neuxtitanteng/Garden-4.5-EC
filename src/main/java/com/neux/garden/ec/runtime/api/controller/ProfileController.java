@@ -61,6 +61,30 @@ public class ProfileController {
 
     }
 
+    @RequestMapping(value = "/Profile/{username}",
+            produces = { "application/json" },
+            method = RequestMethod.GET)
+    @ResponseBody
+    @Validated
+    public GetProfileResponse getProfileByUsername(@Valid  @PathVariable(value="username", required=true) String username) {
+
+        String accept = request.getHeader("Content-Type");
+        if (accept != null && accept.contains("application/json")) {
+            try{
+                return accountService.getProfileByUsername(username);
+            }
+            catch(APIException e) {
+                logger.error("getProfile APIException !!",e);
+                throw e;
+            }catch(Exception e) {
+                logger.error("Unknow Exception !!",e);
+                throw new UnknowException(e);
+            }
+        }
+        else throw new NoSupportContentTypeException();
+
+    }
+
     @RequestMapping(value = "/Profile",
             produces = { "application/json" },
             method = RequestMethod.POST)

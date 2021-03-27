@@ -29,9 +29,17 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
 
-			<properties>
-				<profileActive>local</profileActive>
-			</properties>
+            <properties>
+                <profileActive>local</profileActive>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>SIT</id>
+
+            <properties>
+                <profileActive>SIT</profileActive>
+            </properties>
         </profile>
     </profiles>
 
@@ -237,6 +245,14 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.10.5</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
 
     </dependencies>
 

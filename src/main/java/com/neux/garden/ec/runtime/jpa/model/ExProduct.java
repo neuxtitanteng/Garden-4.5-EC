@@ -19,15 +19,19 @@ public class ExProduct {
           
     @Column(name = "product_name")
     private String productName = null;
-          
-    @Column(name = "picture")
-    private Integer picture = null;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "picture")
+    private CmsTGallery picture = null;
           
     @Column(name = "stock_status")
     private String stockStatus = null;
           
     @Column(name = "stock")
     private Integer stock = null;
+
+    @Column(name = "stock_current")
+    private Integer stockCurrent = null;
           
     @Column(name = "stock_limit_percent")
     private Integer stockLimitPercent = null;
@@ -75,15 +79,15 @@ public class ExProduct {
     public String getProductName() {
         return productName;
     }
-            
-    public void setPicture(Integer picture) {
+
+    public CmsTGallery getPicture() {
+        return picture;
+    }
+
+    public void setPicture(CmsTGallery picture) {
         this.picture = picture;
     }
 
-    public Integer getPicture() {
-        return picture;
-    }
-            
     public void setStockStatus(String stockStatus) {
         this.stockStatus = stockStatus;
     }
@@ -99,7 +103,15 @@ public class ExProduct {
     public Integer getStock() {
         return stock;
     }
-            
+
+    public Integer getStockCurrent() {
+        return stockCurrent;
+    }
+
+    public void setStockCurrent(Integer stockCurrent) {
+        this.stockCurrent = stockCurrent;
+    }
+
     public void setStockLimitPercent(Integer stockLimitPercent) {
         this.stockLimitPercent = stockLimitPercent;
     }
