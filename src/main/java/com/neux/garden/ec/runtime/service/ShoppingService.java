@@ -68,8 +68,6 @@ public class ShoppingService {
             exProductShoppingCar.setCreateBy(account);
             exProductShoppingCar.setUpdateBy(account);
             exProductShoppingCarService.save(exProductShoppingCar);
-        } else {
-            exProductShoppingCarService.deleteByID(exProductShoppingCarIdentity);
         }
 
 
