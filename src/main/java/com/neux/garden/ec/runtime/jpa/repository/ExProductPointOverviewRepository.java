@@ -17,4 +17,6 @@ import java.util.List;
 public interface ExProductPointOverviewRepository extends JpaRepository<ExProductPointOverview, ExProductPointOverviewIdentity> {
 
     public List<ExProductPointOverview> findByIdentityProductIdOrderByOrders(@Param("productId") String productId);
+
+    public ExProductPointOverview findByIdentityProductIdAndIdentityCategoryId(@Param("productId") String productId,@Param("categoryId") String categoryId);
 }

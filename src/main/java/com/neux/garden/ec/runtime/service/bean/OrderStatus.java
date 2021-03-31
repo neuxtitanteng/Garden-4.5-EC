@@ -1,4 +1,5 @@
 package com.neux.garden.ec.runtime.service.bean;
 
-public class OrderStatus {
+public enum  OrderStatus {
+    PENDING_PAYMENT,FINISHED,CANCELED
 }

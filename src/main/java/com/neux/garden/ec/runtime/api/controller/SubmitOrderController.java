@@ -7,6 +7,7 @@
 package com.neux.garden.ec.runtime.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.neux.garden.ec.runtime.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,32 @@ public class SubmitOrderController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    
+    @Autowired
+    private OrderService orderService;
+
+    @RequestMapping(value = "/SubmitOrder",
+            produces = { "application/json" },
+            method = RequestMethod.POST)
+    @ResponseBody
+    @Validated
+    public SubmitOrderResponse submitOrder(
+            @Valid @RequestHeader(value = "Authorization", required = true) String authorization,
+            @Valid @RequestBody SubmitOrderRequest orderInfo) {
+
+        String accept = request.getHeader("Content-Type");
+        if (accept != null && accept.contains("application/json")) {
+            try{
+                return orderService.submitOrder(authorization,orderInfo);
+            }
+            catch(APIException e) {
+                logger.error("submitOrder APIException !!",e);
+                throw e;
+            }catch(Exception e) {
+                logger.error("Unknow Exception !!",e);
+                throw new UnknowException(e);
+            }
+        }
+        else throw new NoSupportContentTypeException();
+
+    }
 }

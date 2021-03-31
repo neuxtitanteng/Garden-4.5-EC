@@ -26,4 +26,8 @@ public class ExProductShoppingCarService extends ExProductShoppingCarBasicServic
     public List<ExProduct> listMyShoppingCart(String account) {
         return basicExProductShoppingCar.listShoppingCart(account,dateService.getTodayStartTime(),dateService.getTodayEndTime());
     }
+
+    public void clearMyShoppingCart(String account) {
+        basicExProductShoppingCar.deleteByIdentityAccount(account);
+    }
 }

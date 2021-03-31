@@ -16,42 +16,27 @@ import java.math.BigDecimal;
 public class SubmitOrderResult {
 
     
-    @JsonProperty("ProductId")
+    @JsonProperty("IsRedirect")
     @Valid 
-    private String productId = null;
+    private Boolean isRedirect = false;
             
-    @JsonProperty("PointType")
+    @JsonProperty("RedirectForm")
     @Valid 
-    private String pointType = null;
-            
-    @JsonProperty("Quantity")
+    private String redirectForm = null;
 
-    @Valid 
-    private BigDecimal quantity = null;
-            
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public Boolean getRedirect() {
+        return isRedirect;
     }
 
-    public String getProductId() {
-        return productId;
-    }
-            
-    public void setPointType(String pointType) {
-        this.pointType = pointType;
+    public void setRedirect(Boolean redirect) {
+        isRedirect = redirect;
     }
 
-    public String getPointType() {
-        return pointType;
-    }
-            
-    public void setQuantity(BigDecimal quantity) {
-        this.quantity = quantity;
+    public String getRedirectForm() {
+        return redirectForm;
     }
 
-    public BigDecimal getQuantity() {
-        return quantity;
+    public void setRedirectForm(String redirectForm) {
+        this.redirectForm = redirectForm;
     }
-            
-
 }

@@ -6,13 +6,20 @@
 
 package com.neux.garden.ec.runtime.service.data;
 
+import com.neux.garden.ec.runtime.jpa.model.ExProductOrderDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ExProductOrderDetailService extends ExProductOrderDetailBasicService {
 
     private Logger logger = LoggerFactory.getLogger(ExProductOrderDetailService.class);
 
+
+    public void saveAll(List<ExProductOrderDetail> detailList) {
+        basicExProductOrderDetail.saveAll(detailList);
+    }
 }

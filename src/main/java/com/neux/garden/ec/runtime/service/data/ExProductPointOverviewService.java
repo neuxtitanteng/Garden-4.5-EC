@@ -22,4 +22,9 @@ public class ExProductPointOverviewService extends ExProductPointOverviewBasicSe
     public List<ExProductPointOverview> findByProductId(String productId) {
         return basicExProductPointOverview.findByIdentityProductIdOrderByOrders(productId);
     }
+
+    public ExProductPointOverview findByIdentityProductIdAndIdentityCategoryId(String productId ,String categoryId) {
+        return basicExProductPointOverview.findByIdentityProductIdAndIdentityCategoryId(productId,categoryId);
+    }
+
 }

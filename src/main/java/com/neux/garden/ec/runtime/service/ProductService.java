@@ -104,6 +104,8 @@ public class ProductService<T> {
         return response;
     }
 
+
+
     public Product convertAPIProduct(ExProduct exProduct) {
 
         String productId = exProduct.getProductId();
@@ -136,4 +138,6 @@ public class ProductService<T> {
 
         return product;
     }
+
+
 }

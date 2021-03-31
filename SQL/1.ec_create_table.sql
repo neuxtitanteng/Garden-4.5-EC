@@ -180,11 +180,10 @@ create table ex_product_shopping_car(
 create table ex_product_order(
     order_id nvarchar(50) not null,
     account nvarchar(200) not null,
-    status nvarchar(1) not null, --PENDING_PAYMENT / FINISHED / CANCELED--
-    payment_type nvarchar(1) not null,
+    status nvarchar(50) not null, --PENDING_PAYMENT / FINISHED / CANCELED--
+    payment_type nvarchar(50) not null,
     point int not null,
     cost int not null,
-    submit_time datetime not null,
     order_date datetime not null,
     order_year int not null,
     order_quarter int not null,

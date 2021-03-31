@@ -206,6 +206,15 @@ public class DateService {
         return c.get(Calendar.YEAR);
     }
 
+    public int getCurrentQuarter() {
+
+        int month = getCurrentMonth();
+        if(month >= 1 && month <= 3) return 1;
+        else if(month >= 4 && month <= 6) return 2;
+        else if(month >= 7 && month <= 9) return 3;
+        else  return 4;
+    }
+
     public int getCurrentMonth() {
         Calendar c = new GregorianCalendar();
         c.setTime(getTodayDate());
@@ -535,7 +544,7 @@ public class DateService {
         return timeBaseSeq;
     }
 
-    public List<Integer>getForecastQuarter(int Quarter) {
+    public List<Integer> getForecastQuarter(int Quarter) {
 
         List<Integer> timeBaseSeq = new ArrayList<Integer>();
 

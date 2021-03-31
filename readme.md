@@ -1,23 +1,5 @@
-
-# EC Platform
-
-## API
-
-#### Login
-#### Forget Password
-#### ProductType
-#### ProductList
-#### ProductDetail
-#### RecommendedProduct
-#### WishList
-#### ShoppingCar
-#### Orders
-#### Cashflow
-
-
-## Function
-#### Stock Control
-#### ShoppingCar will control Stock
-
-
- 
+信用卡測試卡號 4311-9522-2222-2222 (注意事項：只有此組卡號可測試交易成功流程)
+信用卡測試安全碼 222
+信用卡測試有效月/年
+輸入的 MM/YYYY 值請大於現在當下時間的月年，例如在 2016/04/20 當天作測試，請設定
+05/2016(含)之後的有效月年，否則回應刷卡失敗。 

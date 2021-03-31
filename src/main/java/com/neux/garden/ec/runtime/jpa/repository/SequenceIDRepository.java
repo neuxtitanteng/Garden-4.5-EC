@@ -1,6 +1,6 @@
 package com.neux.garden.ec.runtime.jpa.repository;
 
-import com.neux.garden.cms.service.bean.CMSSequence;
+import com.neux.garden.ec.runtime.jpa.bean.Sequences;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -14,7 +14,7 @@ public class SequenceIDRepository {
     @PersistenceContext
     private EntityManager em;  // 注入实体管理器
 
-    public BigInteger getSequenceID(CMSSequence sequence) {
+    public BigInteger getSequenceID(Sequences sequence) {
         return getSequenceID(sequence.getSequence());
     }
 
@@ -25,7 +25,7 @@ public class SequenceIDRepository {
     }
     
     @Transactional
-    public void resetSequenceNumber(CMSSequence sequence) {
+    public void resetSequenceNumber(Sequences sequence) {
     	resetSequenceNumber(sequence.getSequence());
    }
    

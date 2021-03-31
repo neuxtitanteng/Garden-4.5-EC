@@ -16,9 +16,12 @@ public class ExProductOrderDetail {
     @EmbeddedId
     private ExProductOrderDetailIdentity identity = null;
 
-  
-    @Column(name = "point_id")
-    private String pointId = null;
+
+    @Column(name = "product_name")
+    private String productName = null;
+
+    @Column(name = "point_category_name")
+    private String pointCategoryName = null;
               
     @Column(name = "quantity")
     private Integer quantity = null;
@@ -52,15 +55,23 @@ public class ExProductOrderDetail {
         return this.identity;
     }
 
-    
-    public void setPointId(String pointId) {
-        this.pointId = pointId;
+
+    public String getProductName() {
+        return productName;
     }
 
-    public String getPointId() {
-        return pointId;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
-            	
+
+    public String getPointCategoryName() {
+        return pointCategoryName;
+    }
+
+    public void setPointCategoryName(String pointCategoryName) {
+        this.pointCategoryName = pointCategoryName;
+    }
+
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }

@@ -19,6 +19,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
@@ -103,5 +104,18 @@ public class ExProductService<T> extends ExProductBasicService {
 
 
         return basicExProduct.findAll(specification, pageable);
+    }
+
+    @Transactional
+    public int updateStock(int quantity , String productId) {
+        Query query = em.createNativeQuery("update ex_product " +
+                "set stock_current = stock_current - :quantity " +
+                "where product_id = :productId " +
+                "and (stock_current - :quantity) > -1");
+
+        query.setParameter("quantity", quantity);
+        query.setParameter("productId", productId);
+
+        return query.executeUpdate();
     }
 }

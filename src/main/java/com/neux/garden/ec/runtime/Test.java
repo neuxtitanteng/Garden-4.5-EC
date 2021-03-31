@@ -8,13 +8,15 @@ public class Test {
         AllInOne all = new AllInOne("");
 
         AioCheckOutALL obj = new AioCheckOutALL();
-        obj.setMerchantTradeNo("testCompany0004");
+        obj.setMerchantTradeNo("NEUXTEST0000005");
         obj.setMerchantTradeDate("2017/01/01 08:05:23");
-        obj.setTotalAmount("50");
+        obj.setTotalAmount("100");
         obj.setTradeDesc("test Description");
         obj.setItemName("TestItem");
-        obj.setReturnURL("http://211.23.128.214:5000");
+//        obj.setReturnURL("http://211.23.128.214:5000");
         obj.setNeedExtraPaidInfo("N");
+        obj.setOrderResultURL("https://www.google.com.tw");
+        obj.setClientBackURL("http://tw.yahoo.com");
         String form = all.aioCheckOut(obj, null);
 
         System.out.println("===");

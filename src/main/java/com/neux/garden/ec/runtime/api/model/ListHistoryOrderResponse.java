@@ -27,7 +27,7 @@ public class ListHistoryOrderResponse {
             
     @JsonProperty("Body")
     @Valid 
-    private String body = null;
+    private List<HistoryOrder> body = null;
             
     public void setHeader(ResponseHeader header) {
         this.header = header;
@@ -37,11 +37,11 @@ public class ListHistoryOrderResponse {
         return header;
     }
             
-    public void setBody(String body) {
+    public void setBody(List<HistoryOrder> body) {
         this.body = body;
     }
 
-    public String getBody() {
+    public List<HistoryOrder> getBody() {
         return body;
     }
             

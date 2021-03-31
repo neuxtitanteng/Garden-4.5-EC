@@ -12,11 +12,23 @@ import java.util.Date;
 
 @Embeddable
 public class ExProductPointOverviewIdentity implements Serializable{
+
+    @Column(name = "point_id")
+    private String pointId = null;
+
     @Column(name = "product_id")
     private String productId = null;
 
     @Column(name = "category_id")
     private String categoryId = null;
+
+    public String getPointId() {
+        return pointId;
+    }
+
+    public void setPointId(String pointId) {
+        this.pointId = pointId;
+    }
 
     public void setProductId(String productId) {
         this.productId = productId;

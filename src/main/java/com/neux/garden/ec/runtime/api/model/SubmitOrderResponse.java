@@ -22,7 +22,7 @@ public class SubmitOrderResponse implements APIModel{
             
     @JsonProperty("Body")
     @Valid @NotNull
-    private ListProductBody body = null;
+    private SubmitOrderResult body = null;
             
     public void setHeader(ResponseHeader header) {
         this.header = header;
@@ -32,11 +32,11 @@ public class SubmitOrderResponse implements APIModel{
         return header;
     }
             
-    public void setBody(ListProductBody body) {
+    public void setBody(SubmitOrderResult body) {
         this.body = body;
     }
 
-    public ListProductBody getBody() {
+    public SubmitOrderResult getBody() {
         return body;
     }
             
