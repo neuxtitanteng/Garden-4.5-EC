@@ -239,11 +239,18 @@ public class OrderService {
 
     public ListHistoryOrderResponse listHistoryOrder(String authorization) {
         ListHistoryOrderResponse listHistoryOrderResponse = new ListHistoryOrderResponse();
-        List<HistoryOrder> historyOrders  = new ArrayList();
+        List<HistoryOrder> historyOrders  = new ArrayList<HistoryOrder>();
 
         String account = tokenService.getUsernameFromToken(authorization);
+
+        logger.trace("account = " + account);
+
         List<ExProductOrder> exProductOrders = exProductOrderService.listHistoryOrder(account);
+
+        logger.trace("exProductOrders size = " + exProductOrders.size());
+
         exProductOrders.forEach(exProductOrder -> {
+
             HistoryOrder historyOrder = new HistoryOrder();
             historyOrder.setOrderId(exProductOrder.getOrderId());
             historyOrder.setOrderDate(dateService.toDateString(exProductOrder.getOrderDate(),"yyyy-MM-dd HH:mm:ss"));
@@ -254,7 +261,12 @@ public class OrderService {
             historyOrders.add(historyOrder);
         });
 
+        logger.trace("historyOrders size = " + historyOrders.size());
+
         listHistoryOrderResponse.setBody(historyOrders);
+
+        logger.trace("listHistoryOrderResponse size = " + listHistoryOrderResponse.getBody().size());
+
         return listHistoryOrderResponse;
     }
 }

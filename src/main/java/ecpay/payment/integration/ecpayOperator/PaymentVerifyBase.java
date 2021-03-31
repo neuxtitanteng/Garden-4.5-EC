@@ -16,13 +16,11 @@ import ecpay.payment.integration.exception.EcpayException;
 
 public class PaymentVerifyBase{
 
-	@Value("${ecpay.payment.EcpayPaymentXML:/Users/neux/IdeaProjects/Garden-4.5-EC/src/main/resources/EcpayPayment.xml}")
-	protected String confPath;
+	protected String confPath = "D:/Tomcat_Deploy/tomcat_ec/EcpayPayment.xml";
 
 //	protected String confPath = "/Users/neux/IdeaProjects/Garden-4.5-EC/src/main/resources/EcpayPayment.xml";
 	protected Document doc;
 	public PaymentVerifyBase(){
-		if(confPath == null) confPath = "/Users/neux/IdeaProjects/Garden-4.5-EC/src/main/resources/EcpayPayment.xml";
 		File file = new File(confPath);
 
 //		URL fileURL = this.getClass().getResource(confPath);

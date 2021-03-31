@@ -34,28 +34,7 @@ public class CorsConfig {
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
 
-		if ("Local".equalsIgnoreCase(profileID)
-				|| "SIT".equalsIgnoreCase(profileID) || "NEUX-SIT".equalsIgnoreCase(profileID)
-				|| "NEUX-UAT".equalsIgnoreCase(profileID)) {
-
-			config.addAllowedOrigin("*");
-
-		}
-
-		// 增加extension OriginPath
-		if (!OriginExtension.isEmpty()) {
-
-			String[] OriginPaths = OriginExtension.split(",");
-
-			for (String OriginPath : OriginPaths) {
-
-				log.info("CorsFilter OriginPath:" + OriginPath);
-				config.addAllowedOrigin(OriginPath);
-
-			}
-
-		}
-
+		config.addAllowedOrigin("*");
 		config.addAllowedMethod("*");
 		config.addAllowedHeader("*");
 

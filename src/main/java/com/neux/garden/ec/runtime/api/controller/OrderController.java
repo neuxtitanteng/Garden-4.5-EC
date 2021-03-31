@@ -37,24 +37,6 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/OrderCallback",
-            produces = { "application/json" },
-            method = RequestMethod.POST)
-    @ResponseBody
-    public String orderCallback() {
-
-        try{
-            return orderService.submitOrderCallback(request) ? "1|OK" : "";
-        }
-        catch(APIException e) {
-            logger.error("orderCallback APIException !!",e);
-            throw e;
-        }catch(Exception e) {
-            logger.error("Unknow Exception !!",e);
-            throw new UnknowException(e);
-        }
-    }
-
     @RequestMapping(value = "/Order",
             produces = { "application/json" },
             method = RequestMethod.GET)
